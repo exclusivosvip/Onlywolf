@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WolfGirl - Fique mais próximo de mim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neonPink: '#ff007f',
+                        darkBg: '#0f0f11',
+                        cardBg: '#1a1a1f'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0f0f11; color: white; }
+        .gradient-text {
+            background: linear-gradient(to right, #ff007f, #ff7a00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+            border: 1px solid rgba(255, 0, 127, 0.5);
+        }
+        .neon-button {
+            background: linear-gradient(45deg, #ff007f, #cc0066);
+            transition: all 0.3s ease;
+        }
+        .neon-button:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+            transform: translateY(-2px);
+        }
+        /* Esconder o modal por padrão */
+        #payment-modal { display: none; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <header class="relative w-full overflow-hidden text-center py-16 flex flex-col items-center justify-center">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://image.jimcdn.com/app/cms/image/transf/none/path/s2c06c3b513d3c5d7/image/i271429e6834afb3a/version/1776731925/image.png');"></div>
+        <div class="relative z-10 max-w-4xl px-4">
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s2c06c3b513d3c5d7/image/i271429e6834afb3a/version/1776731925/image.png" alt="Fique mais próximo de mim" class="mx-auto h-32 object-contain mb-6 drop-shadow-2xl">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 uppercase tracking-wider gradient-text">Fique mais próximo de mim</h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">Vou Dançar pra você: Receba conteúdo da Influencer WolfGirl de primeira mão, da forma mais quente 🥵</p>
+            
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s2c06c3b513d3c5d7/image/i3d8ab7f66f5ddf41/version/1776732043/image.png" alt="Vou Dançar pra você" class="mx-auto rounded-xl neon-border max-w-full h-auto md:w-2/3 mb-8">
+            
+            <button onclick="copyGiftPix()" class="neon-button text-white font-bold py-3 px-8 rounded-full text-lg flex items-center justify-center mx-auto gap-2">
+                <i class="fa-solid fa-gift"></i> Enviar presente para mim 😝🩷
+            </button>
+            <p id="gift-msg" class="text-green-400 mt-2 text-sm hidden">Chave PIX do presente copiada com sucesso!</p>
+        </div>
+    </header>
+
+    <section class="py-12 px-4 max-w-6xl mx-auto w-full">
+        <div class="text-center mb-10">
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1920x400:format=png/path/s2c06c3b513d3c5d7/image/iedc0e515904e64cc/version/1776732179/image.png" alt="Pacotes" class="mx-auto h-24 object-contain mb-4">
+            <h2 class="text-3xl font-bold text-white uppercase border-b-2 border-neonPink inline-block pb-2">Pacotes Exclusivos</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="cardBg rounded-xl p-6 flex flex-col justify-between neon-border hover:scale-105 transition-transform duration-300">
+                <div>
+                    <h3 class="text-xl font-bold text-neonPink mb-2">Pacote Leve</h3>
+                    <p class="text-gray-400 mb-4">5 Fotos + 2 Vídeos</p>
+                    <p class="text-3xl font-extrabold text-white mb-6">R$ 5,00</p>
+                </div>
+                <button onclick="openModal('Pacote Leve', '00020126580014BR.GOV.BCB.PIX0136fe318421-7a48-4290-a401-7abcc31b761e52040000530398654045.005802BR5924Miria Silva da Conceicao6009SAO PAULO62140510CjrQwDkyto6304A121', 'R$ 5,00')" class="w-full neon-button text-white font-bold py-2 rounded-lg">Quero esse 🔥</button>
+            </div>
+
+            <div class="cardBg rounded-xl p-6 flex flex-col justify-between neon-border hover:scale-105 transition-transform duration-300">
+                <div>
+                    <h3 class="text-xl font-bold text-neonPink mb-2">Pacote Padrão</h3>
+                    <p class="text-gray-400 mb-4">10 Fotos + 5 Vídeos</p>
+                    <p class="text-3xl font-extrabold text-white mb-6">R$ 20,00</p>
+                </div>
+                <button onclick="openModal('Pacote Padrão', '00020126580014BR.GOV.BCB.PIX0136fe318421-7a48-4290-a401-7abcc31b761e520400005303986540520.005802BR5924Miria Silva da Conceicao6009SAO PAULO62140510sSXTw6e1xA6304DE29', 'R$ 20,00')" class="w-full neon-button text-white font-bold py-2 rounded-lg">Quero esse 🔥</button>
+            </div>
+
+            <div class="cardBg rounded-xl p-6 flex flex-col justify-between neon-border hover:scale-105 transition-transform duration-300">
+                <div>
+                    <h3 class="text-xl font-bold text-neonPink mb-2">Pacote Premium</h3>
+                    <p class="text-gray-400 mb-4">20 Fotos + 10 Vídeos</p>
+                    <p class="text-3xl font-extrabold text-white mb-6">R$ 30,00</p>
+                </div>
+                <button onclick="openModal('Pacote Premium', '00020126580014BR.GOV.BCB.PIX0136fe318421-7a48-4290-a401-7abcc31b761e520400005303986540530.005802BR5924Miria Silva da Conceicao6009SAO PAULO62140510ACugWkeAkS630413BA', 'R$ 30,00')" class="w-full neon-button text-white font-bold py-2 rounded-lg">Quero esse 🔥</button>
+            </div>
+
+            <div class="cardBg rounded-xl p-6 flex flex-col justify-between border-2 border-neonPink relative overflow-hidden hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(255,0,127,0.5)]">
+                <div class="absolute top-0 right-0 bg-neonPink text-white text-xs font-bold px-3 py-1 rounded-bl-lg">OFERTA</div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Pacote Diamante</h3>
+                    <p class="text-gray-400 mb-4">50 Fotos + 30 Vídeos</p>
+                    <p class="text-3xl font-extrabold text-neonPink mb-6">R$ 40,00</p>
+                </div>
+                <button onclick="openModal('Pacote Diamante (Oferta)', '00020126580014BR.GOV.BCB.PIX0136fe318421-7a48-4290-a401-7abcc31b761e520400005303986540540.005802BR5924Miria Silva da Conceicao6009SAO PAULO62140510kpcVonECDH6304189A', 'R$ 40,00')" class="w-full neon-button text-white font-bold py-2 rounded-lg">Aproveitar Oferta 😈</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 px-4 max-w-4xl mx-auto w-full mb-16">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-white uppercase border-b-2 border-neonPink inline-block pb-2">Planos VIP</h2>
+            <p class="text-gray-400 mt-4">Acesso exclusivo diário. O contato mais íntimo que você pode ter.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="cardBg rounded-xl p-8 neon-border flex flex-col justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold text-neonPink mb-4"><i class="fa-solid fa-calendar-week"></i> Plano Semanal</h3>
+                    <ul class="text-gray-300 space-y-2 mb-6 text-sm">
+                        <li><i class="fa-solid fa-check text-neonPink mr-2"></i> Imagens e Vídeos Diários</li>
+                        <li><i class="fa-solid fa-check text-neonPink mr-2"></i> Momentos do dia a dia</li>
+                        <li><i class="fa-solid fa-check text-neonPink mr-2"></i> Chamadas de Vídeo</li>
+                        <li><i class="fa-solid fa-check text-neonPink mr-2"></i> Lives Ao Vivo</li>
+                        <li class="text-gray-500 italic mt-2">Duração: 7 dias</li>
+                    </ul>
+                    <p class="text-4xl font-extrabold text-white mb-6">R$ 10,99</p>
+                </div>
+                <button onclick="openModal('Plano Semanal VIP', '00020126580014BR.GOV.BCB.PIX0136fe318421-7a48-4290-a401-7abcc31b761e520400005303986540510.995802BR5924Miria Silva da Conceicao6009SAO PAULO62140510hiBpE95ZpC6304E64A', 'R$ 10,99')" class="w-full bg-white text-darkBg font-bold py-3 rounded-lg hover:bg-gray-200 transition">Assinar Semanal</button>
+            </div>
+
+            <div class="cardBg rounded-xl p-8 border-2 border-neonPink flex flex-col justify-between relative shadow-[0_0_30px_rgba(255,0,127,0.3)]">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-neonPink text-white text-sm font-bold px-4 py-1 rounded-full shadow-lg">MAIS VANTAJOSO</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-neonPink mb-4"><i class="fa-solid fa-calendar-days"></i> Plano Mensal</h3>
+                    <ul class="text-gray-300 space-y-2 mb-6 text-sm">
+                        <li><i class="fa-solid fa-check text-neonPink mr-2"></i> Imagens e Vídeos Diários</li>
+                        <li><i class="fa-solid fa-check text-neonPink mr-2"></i> Momentos do dia a dia</li>
+                        <li><i class="fa-solid fa-check text-neonPink mr-2"></i> Chamadas de Vídeo</li>
+                        <li><i class="fa-solid fa-check text-neonPink mr-2"></i> Lives Ao Vivo</li>
+                        <li class="text-gray-500 italic mt-2">Duração: 30 dias</li>
+                    </ul>
+                    <p class="text-4xl font-extrabold text-white mb-6">R$ 25,00</p>
+                </div>
+                <button onclick="openModal('Plano Mensal VIP', '00020126580014BR.GOV.BCB.PIX0136fe318421-7a48-4290-a401-7abcc31b761e520400005303986540525.005802BR5924Miria Silva da Conceicao6009SAO PAULO62140510Ua3o1N6JsM6304C2CA', 'R$ 25,00')" class="w-full neon-button text-white font-bold py-3 rounded-lg">Assinar Mensal</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="payment-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 backdrop-blur-sm px-4">
+        <div class="bg-cardBg border border-gray-700 rounded-2xl w-full max-w-lg p-6 relative shadow-[0_0_40px_rgba(255,0,127,0.2)]">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+            
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-white mb-2">Finalizar Compra</h2>
+                <p class="text-neonPink italic">Você está a um passo de ficar muito mais próximo de mim... 🤫💋</p>
+            </div>
+
+            <div class="bg-darkBg p-4 rounded-lg mb-6 border border-gray-800">
+                <p class="text-gray-400 text-sm">Produto selecionado:</p>
+                <p id="modal-product-name" class="text-lg font-bold text-white"></p>
+                <p id="modal-product-price" class="text-xl font-extrabold text-neonPink"></p>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-300 font-bold mb-3">Onde quer receber o produto? (Envio Imediato 🚀)</label>
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                    <label class="cursor-pointer">
+                        <input type="radio" name="delivery" value="whatsapp" class="peer hidden" onchange="toggleDeliveryInput()" checked>
+                        <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-gray-700 peer-checked:border-green-500 peer-checked:bg-green-500/10 transition">
+                            <i class="fa-brands fa-whatsapp text-2xl text-green-500 mb-1"></i>
+                            <span class="text-xs text-white">WhatsApp</span>
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="delivery" value="telegram" class="peer hidden" onchange="toggleDeliveryInput()">
+                        <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-gray-700 peer-checked:border-blue-500 peer-checked:bg-blue-500/10 transition">
+                            <i class="fa-brands fa-telegram text-2xl text-blue-500 mb-1"></i>
+                            <span class="text-xs text-white">Telegram</span>
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="delivery" value="email" class="peer hidden" onchange="toggleDeliveryInput()">
+                        <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-gray-700 peer-checked:border-red-500 peer-checked:bg-red-500/10 transition">
+                            <i class="fa-solid fa-envelope text-2xl text-red-500 mb-1"></i>
+                            <span class="text-xs text-white">E-mail</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <input type="text" id="delivery-input" placeholder="Digite seu número de WhatsApp com DDD..." class="w-full bg-darkBg border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-neonPink transition">
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-300 font-bold mb-2">1. Copie o código PIX abaixo:</label>
+                <div class="flex bg-darkBg border border-gray-700 rounded-lg overflow-hidden">
+                    <input type="text" id="pix-code-input" readonly class="w-full bg-transparent text-gray-400 px-4 py-2 text-sm focus:outline-none truncate">
+                    <button onclick="copyModalPix()" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 transition flex items-center gap-2">
+                        <i class="fa-regular fa-copy"></i> Copiar
+                    </button>
+                </div>
+                <p id="modal-copy-msg" class="text-green-400 text-xs mt-1 hidden">Código copiado! Vá no app do seu banco e pague usando "PIX Copia e Cola".</p>
+            </div>
+
+            <div class="bg-gray-800/50 p-3 rounded-lg text-xs text-gray-400 text-center mb-6">
+                Após efetuar o pagamento, clique no botão abaixo. O sistema verificará automaticamente e enviará seu conteúdo em instantes.
+            </div>
+
+            <button onclick="confirmPurchase()" class="w-full neon-button text-white font-bold py-3 rounded-lg text-lg">
+                Já paguei! Quero receber agora 🥵
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const giftPix = "00020126960014BR.GOV.BCB.PIX0136fe318421-7a48-4290-a401-7abcc31b761e0234Envie um presente para mim e outro5204000053039865802BR5924Miria Silva da Conceicao6009SAO PAULO62140510wA3BsLohG56304F13C";
+
+        // Copiar o PIX do presente
+        function copyGiftPix() {
+            navigator.clipboard.writeText(giftPix).then(() => {
+                const msg = document.getElementById('gift-msg');
+                msg.classList.remove('hidden');
+                setTimeout(() => msg.classList.add('hidden'), 3000);
+            });
+        }
+
+        // Lógica do Modal
+        const modal = document.getElementById('payment-modal');
+        const inputDelivery = document.getElementById('delivery-input');
+        const pixInput = document.getElementById('pix-code-input');
+
+        function openModal(productName, pixCode, price) {
+            document.getElementById('modal-product-name').innerText = productName;
+            document.getElementById('modal-product-price').innerText = price;
+            pixInput.value = pixCode;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.getElementById('modal-copy-msg').classList.add('hidden');
+        }
+
+        // Trocar o placeholder do input dependendo da escolha
+        function toggleDeliveryInput() {
+            const selected = document.querySelector('input[name="delivery"]:checked').value;
+            if (selected === 'whatsapp') {
+                inputDelivery.placeholder = "Digite seu número de WhatsApp com DDD...";
+                inputDelivery.type = "tel";
+            } else if (selected === 'telegram') {
+                inputDelivery.placeholder = "Digite seu @usuario ou número do Telegram...";
+                inputDelivery.type = "text";
+            } else if (selected === 'email') {
+                inputDelivery.placeholder = "Digite seu melhor E-mail...";
+                inputDelivery.type = "email";
+            }
+        }
+
+        // Copiar PIX de dentro do modal
+        function copyModalPix() {
+            navigator.clipboard.writeText(pixInput.value).then(() => {
+                const msg = document.getElementById('modal-copy-msg');
+                msg.classList.remove('hidden');
+                setTimeout(() => msg.classList.add('hidden'), 5000);
+            });
+        }
+
+        // Simulação de confirmação
+        function confirmPurchase() {
+            const deliveryValue = inputDelivery.value;
+            if(!deliveryValue) {
+                alert("Por favor, preencha onde você quer receber o conteúdo antes de confirmar!");
+                return;
+            }
+            alert("Aguardando confirmação do banco... Assim que o PIX for reconhecido, o conteúdo será enviado imediatamente para: " + deliveryValue + "!\n\nPrepare-se 🔥");
+            closeModal();
+            inputDelivery.value = ''; // Limpar o campo
+        }
+    </script>
+</body>
+</html>
